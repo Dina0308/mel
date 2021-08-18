@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Roboto', 'Arial', sans-serif;
+}
+header {
+    background: #635854;
+}
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    &__contacts {
+        text-align: right;
+    }
+    &__text {
+        font-size: 14px;
+        color: #fff;
+    }
+    &__tel {
+        font-size: 17px;
+        color: #fff;
+        text-decoration: none;
+    }
+    
+}
+.menu {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    &__link {
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+    }
+    &__item {
+        margin: 0 40px;
+        text-align: center;
+    }
+}
