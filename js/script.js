@@ -2,7 +2,12 @@ $(document).ready(function () {
     let currentFloor = 2,
         btnUp = $(".btn__up"),
         btnDown = $('.btn__down'),
-        floorPath = $('.main__home path');
+        floorPath = $('.main__home path'),
+        modal = $('.modal'),
+        modalClose = $('.modal__close'),
+        btnShow = $('.btn__show'),
+        currentApart = $('.floor__path'),
+        currentApartLink = $('.apart__link');
 
         //функция при наведении мышкой на этаж
         floorPath.on("mouseover", function() {
@@ -21,7 +26,7 @@ $(document).ready(function () {
             floorPath.removeClass('current-floor');             // удаляем активный класс у этажей
             $(`[data-floor=${usCurrentFloor}]`).toggleClass("current-floor");     //подсвечиваем активный этаж
         }
-    })
+    });
 
     btnDown.on('click', function() {
         if (currentFloor > 2) {
@@ -32,5 +37,38 @@ $(document).ready(function () {
             floorPath.removeClass('current-floor');
             $(`[data-floor=${usCurrentFloor}]`).toggleClass("current-floor");
         }
-    })
+    });
+
+    // modal
+    function toggleActive() {
+        modal.toggleClass('modal__active');
+    }
+
+    floorPath.on('click', toggleActive);
+    modalClose.on('click', toggleActive);
+    btnShow.on('click', toggleActive);
+
+    function toggleSlide(item) {
+        $(item).each(function(i) {
+            $(this).on('mouseover', function() {
+                $(currentApart).removeClass('floor__active');
+                $(currentApartLink).removeClass('link__active');
+                $(currentApartLink).eq(i).toggleClass('link__active');
+                
+            });
+        });
+    }
+
+    function toggleBlue(item) {
+        $(item).each(function(i) {
+            $(this).on('mouseover', function() {
+                $(currentApartLink).removeClass('link__active');
+                $(currentApart).removeClass('floor__active');
+                $(currentApart).eq(i).toggleClass('floor__active');
+                
+            });
+        });
+    }
+    toggleSlide(currentApart);
+    toggleBlue(currentApartLink);
 });
