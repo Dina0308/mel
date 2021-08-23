@@ -48,7 +48,8 @@ $(document).ready(function () {
     modalClose.on('click', toggleActive);
     btnShow.on('click', toggleActive);
 
-    function toggleSlide(item) {
+    //выделение ссылки при наведении на схему квартиры на этаже
+    function toggleSlide(item) { 
         $(item).each(function(i) {
             $(this).on('mouseover', function() {
                 $(currentApart).removeClass('floor__active');
@@ -58,17 +59,48 @@ $(document).ready(function () {
             });
         });
     }
-
+    // выделение схемы квартиры на этаже при наведении на сслыку
     function toggleBlue(item) {
         $(item).each(function(i) {
             $(this).on('mouseover', function() {
                 $(currentApartLink).removeClass('link__active');
                 $(currentApart).removeClass('floor__active');
                 $(currentApart).eq(i).toggleClass('floor__active');
-                
+                   
             });
-        });
+           });
+        
     }
     toggleSlide(currentApart);
     toggleBlue(currentApartLink);
+
+    //форма заказа
+    function orderActive () {
+        $('.overlay, .order').fadeIn('slow');
+    }
+    function orderNone () {
+        $('.overlay, .order, .thanks').fadeOut('slow');
+    }
+    currentApart.on('click', orderActive);
+    currentApartLink.on('click', orderActive);
+    $('.order__close').on('click', orderNone);
+    $('.order__btn').on('click', function() {
+        $('.order').fadeOut('slow');
+        $('.thanks').fadeIn('slow');
+    });
+
+// menu 
+let hamburger = $('.hamburger'),
+    menu = $('.menu'),
+    menuItem = $('.menu__item');
+
+    function closeMenu() {
+        hamburger.toggleClass('hamburger_active');
+        menu.toggleClass('menu_active');
+    }
+
+    hamburger.on('click', closeMenu);
+    menuItem.on('click', closeMenu);
+
 });
+
